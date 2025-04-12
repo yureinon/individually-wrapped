@@ -3,6 +3,7 @@ import '../styles/schedule.css'
 import DatePicker from './dates';
 import nerdImg from '../assets/nerd.png'
 import EventBlock from './event';
+import CreateEvent from './createevent';
 // clicking arrows on dates moves selected date to the next one / prev one, re-render dates component
 function SchedulePage() {
   const today = new Date();
@@ -52,6 +53,7 @@ function SchedulePage() {
       <div className="dateheader">
         {formatted}
       </div>
+      <CreateEvent />
       <img src={nerdImg} className="nerdimage"/>
       <span className="displaydates">
         <button onClick={prevDay} className="prevButton">
