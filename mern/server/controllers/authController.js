@@ -9,14 +9,14 @@ export async function login(req) {
   if (!results[0]) {
     throw new Error("Unauthorized");
   }
-  const {pwhash, id} = results[0];
+  const {pwhash, _id} = results[0];
   bcrypt.compare(password, pwhash, (err, result) => {
     if (!result) {
       throw new Error("Unauthorized");
     }
   });
-  const accessToken = jwt.sign({id: id},
-    `${process.env.SECRET}`, {
+  const accessToken = jwt.sign({id: _id},
+    `${process.env.SECRET}wrapped`, {
       expiresIn: '30m',
       algorithm: 'HS256'
     }
@@ -28,11 +28,11 @@ export async function check(req, res, next) {
   const authHeader = req.headers.authorization;
   if (authHeader) {
     const token = authHeader.split(' ')[1];
-    jwt.verify(token, process.env.SECRET, (err, user) => {
+    jwt.verify(token, `${process.env.SECRET}wrapped`, (err, decoded) => {
       if (err) {
         return res.sendStatus(403);
       }
-      req.user = user;
+      req.user = decoded;
       next();
     });
   } else {
