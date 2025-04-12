@@ -1,4 +1,4 @@
-.background {
+.background1 {
   height: 100vh;
   width: 100vw;
   background: linear-gradient(to bottom, #FFFBEF 0%, #FFF4D1 100%);
@@ -9,7 +9,7 @@
   color: black;
 }
 
-.header {
+.header1 {
   background-color: #D5EBFF;
   padding: 20px;
   padding-left: 50px;
@@ -21,15 +21,15 @@
   margin-top: 10%;
 }
 
-.nerdimg {
+.nerdimg1 {
   width: 150px;
   height: 170px;
   align-self: flex-start;
   margin-left: 20px;
-  margin-top: 10px;
+  padding: 0;
 }
 
-.housebutton {
+.housebutton1 {
   border-radius: 999px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
   background-color: #FFDCF2;
@@ -42,7 +42,7 @@
   align-self: center;
 }
 
-.buttons {
+.buttons1 {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -50,14 +50,14 @@
   gap: 20px;
 }
 
-.campuslabel {
+.campuslabel1 {
   align-self: flex-start;
   margin-left: 10%;
   margin-top: 10px;
   margin-bottom: 5px;
 }
 
-.donebutton {
+.donebutton1 {
   align-self: flex-end;
   margin-right: 7%;
   margin-top: 20px;
