@@ -8,6 +8,7 @@ import Login from './signup-login/Login'
 import Signup from './signup-login/Signup'
 import HouseSelection from './house-selection/page'
 import InvitePage from './add-members/page'
+import InvitationsCreate from './invitations-create/InvitationsCreate'
 
 // function App() {
 //   // const [count, setCount] = useState(0)
@@ -29,7 +30,7 @@ function App() {
     //   selectedWorkspace, setSelectedWorkspace, selectedChannel, setChannel}}>
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<Landing />} />
+          <Route path="/" element={<InvitationsCreate />} />
           <Route path="/login" element={
             // <AuthenticatedRoute>
               <Login />

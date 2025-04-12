@@ -1,0 +1,108 @@
+.invitations-create {
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-family: "Nunito", sans-serif;
+    background: linear-gradient(to bottom, #FFFBEF 0%, #FFF4D1 100%);
+  }
+
+img {
+    width: 50%;
+    padding: 10%;
+}
+
+.btn {
+    position: absolute;
+    background-color: transparent;
+    border: none;
+    box-shadow: none;
+    padding: 0.5rem;
+    font-size: 1.2rem;
+    width: 15%;
+    color: black;
+    top: 0;
+    left: 0;
+}
+
+.create-button {
+    background-color: #FFE3F4;
+    width: 60%;
+}
+
+.invitations {
+    padding-top: 20%;
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+    height: 50%;
+}
+
+/* .invitations-card {
+    height: 100%;
+    display: flex;
+    overflow: scroll;
+    border-top: 10%;
+    border-bottom: 10%;
+} */
+
+.invitations-title {
+    font-size: 110%;
+    color: black;
+    align-self: flex-start;
+}
+
+/* .invitations-list {
+    width: 100%;
+    margin-left: 5%;
+    margin-top: 5%;
+    align-self: flex-start;
+} */
+.invitations-list {
+    overflow: scroll;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 100px;
+    padding: 10px;
+    margin-top: 2px;
+}
+
+.invite {
+    display: flex;
+    flex-direction: row;
+    border-radius: 999px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
+    color: black;
+    background-color: #FFFBEF;
+    font-weight: bold;
+    font-size: 15px;
+    padding: 10px;
+    padding-left: 20px;
+    padding-right: 20px;
+    gap: 10px;
+    width: 200px;
+}
+
+.icon {
+    align-self: flex-end;
+  margin-right: 15px;
+  width: 5px;
+  justify-self: center;
+  color: #FFA500;
+  background: none;
+  padding: 0;
+}
+
+.invite {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+.sender {
+    width: 100%;
+    overflow: hidden;
+}
