@@ -10,15 +10,15 @@ function Landing() {
   return (
     <div className = "landing">
       <div className = "title">
-        <h2 className = "welcome">Welcome to</h2>
-        <h1 className = "app-name">slug</h1>
+        <div className = "welcome">Welcome to</div>
+        <div className = "app-name">slug</div>
       </div>
       <img src={nerdImg} />
       <div className = "buttons">
         <button className = "signin">
             SIGN IN
         </button>
-        <button className = "signup">
+        <button className= "signin">
             SIGN UP
         </button>
       </div>
