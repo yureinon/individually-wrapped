@@ -1,6 +1,5 @@
-import express from "express";
-import db from "../db/connection.js";
-import * as user from "../controllers/userController.js";
+import express from 'express';
+import * as user from '../controllers/userController.js';
 
 const router = express.Router();
 
@@ -19,10 +18,13 @@ const router = express.Router();
  *               email:
  *                 type: string
  *                 format: email
+ *               name:
+ *                 type: string
  *               password:
  *                 type: string
  *             required:
  *               - email
+ *               - name
  *               - password
  *     responses:
  *       201:
@@ -32,15 +34,44 @@ const router = express.Router();
  *       default:
  *         description: Unexpected Error
  */
-router.post("/", async (req, res) => {
+router.post('/', async (req, res) => {
   try {
-    user.signup(req)
-    res.send(results).status(200);
+    await user.signup(req);
+    res.status(201).send();
   } catch (error) {
     if (error) {
-      res.send().status(409);
+      res.status(409).send();
     }
   }
-})
+});
+
+  /**
+   * @swagger
+   * /api/v0/user:
+   *   get:
+   *     description: User signup
+   *     parameters:
+   *       - in: query
+   *         name: email
+   *         schema: 
+   *           type: string
+   *         required: true
+   *         description: Email of user fetch
+   *     responses:
+   *       200:
+   *         description: OK
+   *       default:
+   *         description: Unexpected Error
+   */
+  router.get('/', async (req, res) => {
+    try {
+      const result = await user.get(req);
+      res.status(200).send(result);
+    } catch (error) {
+      if (error) {
+        res.status(404).send();
+      }
+    }
+  });
 
 export default router;
