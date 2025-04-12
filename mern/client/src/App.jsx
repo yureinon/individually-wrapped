@@ -1,5 +1,5 @@
 import {BrowserRouter, Routes, Route} from 'react-router-dom';
-import AuthenticatedRoute from './AuthenticatedRoute';
+// import AuthenticatedRoute from './AuthenticatedRoute';
 import NotFound from './NotFound';
 import './styles/App.css'
 import './styles/Landing.css'
@@ -9,7 +9,9 @@ import Signup from './signup-login/Signup'
 import Home from './home/Home'
 import HouseSelection from './house-selection/page'
 import InvitePage from './add-members/page'
+import InvitationsCreate from './invitations-create/InvitationsCreate'
 import SchedulePage from './schedule/page'
+
 
 // function App() {
 //   // const [count, setCount] = useState(0)
@@ -31,7 +33,7 @@ function App() {
     //   selectedWorkspace, setSelectedWorkspace, selectedChannel, setChannel}}>
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<Landing />} />
+          <Route path="/" element={<InvitationsCreate />} />
           <Route path="/login" element={
             // <AuthenticatedRoute>
               <Login />
