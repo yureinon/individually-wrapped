@@ -1,13 +1,28 @@
 import express from "express";
 import cors from "cors";
-import records from "./routes/record.js";
+import swaggerUi from "swagger-ui-express";
+import swaggerJSDoc from "swagger-jsdoc";
 
 const PORT = process.env.PORT || 5050;
 const app = express();
 
+// swagger setup
+const swaggerOptions = {
+  definition: {
+    openapi: '3.0.0',
+    info: {
+      title: 'MERN API Docs',
+      version: '1.0.0',
+    },
+  },
+  apis: ['./routes/*.js'], // Path to route files with Swagger comments
+};
+
+const swaggerSpec = swaggerJSDoc(swaggerOptions);
+app.use('/api/v0/docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
+
 app.use(cors());
 app.use(express.json());
-app.use("/record", records);
 
 // start the Express server
 app.listen(PORT, () => {
