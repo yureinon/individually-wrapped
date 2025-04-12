@@ -35,7 +35,6 @@ function CreateHouse() {
               </span>
             </form>
             
-            
           </div>
         </div>
       )}
