@@ -21,17 +21,21 @@ export async function login(req) {
       algorithm: 'HS256'
     }
   );
-  return {_id: accessToken, email: results[0].email, name: results[0].name};
+  return {accessToken: accessToken, email: results[0].email, name: results[0].name};
 }
 
 export async function check(req, res, next) {
   const authHeader = req.headers.authorization;
-  const token = authHeader.split(' ')[1];
-  jwt.verify(token, process.env.SECRET, (err, user) => {
-    if (err) {
-      return res.sendStatus(403);
-    }
-    req.user = user;
-    next();
-  });
+  if (authHeader) {
+    const token = authHeader.split(' ')[1];
+    jwt.verify(token, process.env.SECRET, (err, user) => {
+      if (err) {
+        return res.sendStatus(403);
+      }
+      req.user = user;
+      next();
+    });
+  } else {
+    return res.sendStatus(403);
+  }
 }

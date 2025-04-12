@@ -1,5 +1,6 @@
 import express from 'express';
 import * as user from '../controllers/userController.js';
+import * as auth from '../controllers/authController.js';
 
 const router = express.Router();
 
@@ -45,33 +46,35 @@ router.post('/', async (req, res) => {
   }
 });
 
-  /**
-   * @swagger
-   * /api/v0/user:
-   *   get:
-   *     description: User signup
-   *     parameters:
-   *       - in: query
-   *         name: email
-   *         schema: 
-   *           type: string
-   *         required: true
-   *         description: Email of user fetch
-   *     responses:
-   *       200:
-   *         description: OK
-   *       default:
-   *         description: Unexpected Error
-   */
-  router.get('/', async (req, res) => {
-    try {
-      const result = await user.get(req);
-      res.status(200).send(result);
-    } catch (error) {
-      if (error) {
-        res.status(404).send();
-      }
+/**
+ * @swagger
+ * /api/v0/user:
+ *   get:
+ *     security:
+ *       - bearerAuth: []
+ *     description: User signup
+ *     parameters:
+ *       - in: query
+ *         name: email
+ *         schema:
+ *           type: string
+ *         required: true
+ *         description: Email of user fetch
+ *     responses:
+ *       200:
+ *         description: OK
+ *       default:
+ *         description: Unexpected Error
+ */
+router.get('/', auth.check, async (req, res) => {
+  try {
+    const result = await user.get(req);
+    res.status(200).send(result);
+  } catch (error) {
+    if (error) {
+      res.status(404).send();
     }
-  });
+  }
+});
 
 export default router;
