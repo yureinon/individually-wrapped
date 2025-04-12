@@ -23,7 +23,7 @@ export const get = async (req) => {
 
   const existing = await collection.findOne(
     { email: email },
-    { projection: { name: 1, _id: 1 } }
+    { projection: { _id: 0, pwhash: 0 } }
   );
   if (!existing) {
     throw new Error('User not found')
