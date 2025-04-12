@@ -6,6 +6,7 @@ import './styles/Landing.css'
 import Landing from './signup-login/landing'
 import Login from './signup-login/Login'
 import Signup from './signup-login/Signup'
+import Home from './home/Home'
 import HouseSelection from './house-selection/page'
 import InvitePage from './add-members/page'
 
@@ -38,6 +39,11 @@ function App() {
           <Route path="/signup" element={
             // <AuthenticatedRoute>
               <Signup />
+            // </AuthenticatedRoute>
+          } />
+          <Route path="/home" element={
+            // <AuthenticatedRoute>
+              <Home />
             // </AuthenticatedRoute>
           } />
           <Route path="/houseselection" element={
