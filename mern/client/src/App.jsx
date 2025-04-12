@@ -6,9 +6,12 @@ import './styles/Landing.css'
 import Landing from './signup-login/landing'
 import Login from './signup-login/Login'
 import Signup from './signup-login/Signup'
+import Home from './home/Home'
 import HouseSelection from './house-selection/page'
 import InvitePage from './add-members/page'
 import InvitationsCreate from './invitations-create/InvitationsCreate'
+import SchedulePage from './schedule/page'
+
 
 // function App() {
 //   // const [count, setCount] = useState(0)
@@ -39,6 +42,16 @@ function App() {
           <Route path="/signup" element={
             // <AuthenticatedRoute>
               <Signup />
+            // </AuthenticatedRoute>
+          } />
+          <Route path="/home" element={
+            // <AuthenticatedRoute>
+              <Home />
+            // </AuthenticatedRoute>
+          } />
+          <Route path="/schedule" element={
+            // <AuthenticatedRoute>
+              <SchedulePage />
             // </AuthenticatedRoute>
           } />
           <Route path="/houseselection" element={
