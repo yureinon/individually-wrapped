@@ -21,7 +21,7 @@ export async function login(req) {
       algorithm: 'HS256'
     }
   );
-  return {id: accessToken, email: results[0].email, name: results[0].name};
+  return {_id: accessToken, email: results[0].email, name: results[0].name};
 }
 
 export async function check(req, res, next) {
