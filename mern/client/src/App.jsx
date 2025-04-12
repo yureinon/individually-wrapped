@@ -1,12 +1,18 @@
-import '../src/styles/App.css'
-// import HouseSelection from '../src/house-selection/page'
-import InvitePage from '../src/add-members/page'
+// import { useState } from 'react'
+// import reactLogo from './assets/react.svg'
+// import viteLogo from '/vite.svg'
+import './styles/App.css'
+import './styles/Landing.css'
+// import Landing from './signup-login/landing'
+// import Login from './signup-login/Login'
+import Signup from './signup-login/Signup'
+
 
 function App() {
+  // const [count, setCount] = useState(0)
+
   return (
-    <>
-      <InvitePage />
-    </>
+    <Signup/>
   )
 }
 
