@@ -9,6 +9,7 @@ import Signup from './signup-login/Signup'
 import Home from './home/Home'
 import HouseSelection from './house-selection/page'
 import InvitePage from './add-members/page'
+import SchedulePage from './schedule/page'
 
 // function App() {
 //   // const [count, setCount] = useState(0)
