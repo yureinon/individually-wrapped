@@ -1,6 +1,7 @@
 import { MongoClient, ServerApiVersion } from "mongodb";
 
 const URI = process.env.ATLAS_URI || "";
+console.log(URI)
 const client = new MongoClient(URI, {
   serverApi: {
     version: ServerApiVersion.v1,
@@ -19,6 +20,6 @@ try {
   console.error(err);
 }
 
-let db = client.db("employees");
+let db = client.db("individuallywrapped");
 
 export default db;
