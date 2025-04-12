@@ -10,11 +10,20 @@ const app = express();
 // swagger setup
 const swaggerOptions = {
   definition: {
-    openapi: '3.0.0',
+    openapi: '3.0.1',
     info: {
       title: 'MERN API Docs',
       version: '1.0.0',
     },
+    components: {
+      securitySchemes: {
+        bearerAuth: {
+          type: 'http',
+          scheme: 'bearer',
+          bearerFormat: 'JWT',
+        }
+      }
+    }
   },
   apis: ['./routes/*.js'], // Path to route files with Swagger comments
 };
