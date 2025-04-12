@@ -7,6 +7,7 @@
   align-items: center;
   font-family: 'Nunito', sans-serif;
   color: black;
+  z-index: -1;
 }
 
 .dateheader {
@@ -43,7 +44,7 @@
 }
 
 .displaydates {
-  margin-top: 60px;
+  margin-top: 20px;
   display: flex;
   flex-direction: row;
   gap: 40px;
@@ -170,4 +171,16 @@
   align-items: center;
   justify-content: center;
   margin-top: 10px;
+}
+
+.yellow-curve2 {
+  width: 100%;
+  height: 60%;
+  background-color: #FFF4D1;
+  border-bottom-left-radius: 50px;
+  border-bottom-right-radius: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }

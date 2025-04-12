@@ -1,16 +1,20 @@
 import '../styles/Home.css'
 import Chore from './Chore.jsx'
 import Roommate from './Roommate.jsx'
+import {useNavigate} from 'react-router-dom';
 // import nerdImg from '../assets/nerd.png'
 
 
 function Home() {
+  const navigate = useNavigate();
 
   return (
     <div className = "home">
+      <div className="yellow-curve1"></div>
       <div className = "nav-bar">
-        <button className="broom-button"><i className="fa-solid fa-broom"></i></button>
+        <button className="broom-button" onClick={() => navigate("/schedule")}><i className="fa-solid fa-broom"></i></button>
       </div>
+      <h1 className="home-name">Temporary Name</h1>
       <div className = "roommates">
         <h1 className = "roommates-title">Roommates</h1>
         <div className = "roommates-card">

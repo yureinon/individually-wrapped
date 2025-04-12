@@ -4,8 +4,12 @@ import DatePicker from './dates';
 import nerdImg from '../assets/nerd.png'
 import EventBlock from './event';
 import CreateEvent from './createevent';
+import {useNavigate} from 'react-router-dom';
 // clicking arrows on dates moves selected date to the next one / prev one, re-render dates component
+
+
 function SchedulePage() {
+  const navigate = useNavigate();
   const today = new Date();
   const [current, setCurrent] = React.useState(today)
   const formatted = current.toLocaleDateString('en-US', {
@@ -49,7 +53,8 @@ function SchedulePage() {
   d1.getDate() === d2.getDate();
   return (
     <div className="background">
-      <button className="btn"><i className="fa fa-arrow-left"></i></button>
+      <div className="yellow-curve2"></div>
+      <button className="btn" onClick={() => navigate("/home")}><i className="fa fa-arrow-left"></i></button>
       <div className="dateheader">
         {formatted}
       </div>

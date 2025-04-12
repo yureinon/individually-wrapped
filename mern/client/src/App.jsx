@@ -47,6 +47,11 @@ function App() {
               <Home />
             // </AuthenticatedRoute>
           } />
+          <Route path="/schedule" element={
+            // <AuthenticatedRoute>
+              <SchedulePage />
+            // </AuthenticatedRoute>
+          } />
           <Route path="/houseselection" element={
             // <AuthenticatedRoute>
               <HouseSelection />
