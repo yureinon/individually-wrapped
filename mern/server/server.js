@@ -28,5 +28,5 @@ app.use("/api/v0/login", auth);
 
 // start the Express server
 app.listen(PORT, () => {
-  console.log(`Server listening on port ${PORT}`);
+  console.log(`Server listening on port ${PORT}\nLink: http://localhost:5050/api/v0/docs`);
 });
