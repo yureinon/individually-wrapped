@@ -40,7 +40,7 @@ router.post('/', async (req, res) => {
     await user.signup(req);
     res.status(201).send();
   } catch (error) {
-    if (error) {
+    if (error.message == 'Email already registered') {
       res.status(409).send();
     }
   }
@@ -75,6 +75,31 @@ router.get('/', auth.check, async (req, res) => {
       res.status(404).send();
     }
   }
+});
+
+/**
+ * @swagger
+ * /api/v0/user/{status}:
+ *   put:
+ *     security:
+ *       - bearerAuth: []
+ *     description: Change user status
+ *     parameters:
+ *       - in: path
+ *         name: status
+ *         schema:
+ *           type: string
+ *         required: true
+ *         description: New status
+ *     responses:
+ *       200:
+ *         description: OK
+ *       default:
+ *         description: Unexpected Error
+ */
+router.put('/:status', auth.check, async (req, res) => {
+  const result = await user.put(req);
+  res.status(200).send(result);
 });
 
 export default router;
