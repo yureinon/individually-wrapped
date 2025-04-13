@@ -1,14 +1,16 @@
 import express from 'express';
-import * as user from '../controllers/userController.js';
+import * as house from '../controllers/houseController.js';
 import * as auth from '../controllers/authController.js';
 
 const router = express.Router();
 
 /**
  * @swagger
- * /api/v0/user:
+ * /api/v0/house:
  *   post:
- *     description: User signup
+ *     security:
+ *       - bearerAuth: []
+ *     description: Create house
  *     requestBody:
  *       required: true
  *       content:
@@ -16,31 +18,28 @@ const router = express.Router();
  *           schema:
  *             type: object
  *             properties:
- *               email:
- *                 type: string
- *                 format: email
  *               name:
  *                 type: string
- *               password:
+ *               type:
  *                 type: string
  *             required:
- *               - email
  *               - name
- *               - password
+ *               - type
  *     responses:
  *       201:
- *         description: User created
+ *         description: House created
  *       409:
- *         description: Email already registered
+ *         description: User already in house
  *       default:
  *         description: Unexpected Error
  */
-router.post('/', async (req, res) => {
+router.post('/', auth.check, async (req, res) => {
   try {
-    await user.signup(req);
-    res.status(201).send();
+    const result = await house.post(req);
+    res.status(201).send(result);
   } catch (error) {
-    if (error.message == 'Email already registered') {
+    console.log(error.message)
+    if (error) {
       res.status(409).send();
     }
   }
@@ -48,27 +47,22 @@ router.post('/', async (req, res) => {
 
 /**
  * @swagger
- * /api/v0/user:
+ * /api/v0/house:
  *   get:
  *     security:
  *       - bearerAuth: []
- *     description: User signup
- *     parameters:
- *       - in: query
- *         name: email
- *         schema:
- *           type: string
- *         required: true
- *         description: Email of user fetch
+ *     description: Get house
  *     responses:
  *       200:
- *         description: OK
+ *         description: Found house
+ *       404:
+ *         description: Not in a house
  *       default:
  *         description: Unexpected Error
  */
 router.get('/', auth.check, async (req, res) => {
   try {
-    const result = await user.get(req);
+    const result = await house.get(req);
     res.status(200).send(result);
   } catch (error) {
     if (error) {

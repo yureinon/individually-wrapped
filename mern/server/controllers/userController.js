@@ -26,7 +26,7 @@ export const get = async (req) => {
     { projection: { _id: 0, pwhash: 0 } }
   );
   if (!existing) {
-    throw new Error('User not found')
+    throw new Error('User not found');
   }
 
   return existing;
