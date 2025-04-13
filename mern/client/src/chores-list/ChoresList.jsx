@@ -8,6 +8,102 @@ import {useNavigate} from 'react-router-dom';
 
 function ChoresList() {
   const navigate = useNavigate();
+    const [myChores, setMyChores] = React.useState([]);
+    const [roommates, setRoommates] = React.useState([]);
+    const [choresByRoommate, setChoresByRoommate] = React.useState({});
+
+  const getMyChores = (email) => {
+    const token = localStorage.getItem('token');
+
+    fetch(`http://localhost:5050/api/v0/chore/${email}`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`,
+      },
+    })
+        .then((response) => {
+          if (!response.ok) {
+            throw response;
+          }
+          return response.json();
+        })
+        .then((json) => {
+          setMyChores(json);
+        })
+        .catch((error) => {
+          throw(error);
+        });
+  };
+
+
+  const getMyHouse = async () => {
+    const token = localStorage.getItem('token');
+
+    await fetch(`http://localhost:5050/api/v0/house`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`,
+      },
+    })
+        .then((response) => {
+          if (!response.ok) {
+            throw response;
+          }
+          return response.json();
+        })
+        .then((json) => {
+          setRoommates(json.members);
+        })
+        .catch((error) => {
+          if (error.status === 404) {
+            navigate('/invitationscreate')
+          }
+          throw(error);
+        });
+  };
+
+
+  React.useEffect(() => {
+    const token = localStorage.getItem('token');
+
+    const fetchChoresForAll = async () => {
+      const results = {};
+
+      await Promise.all(
+        roommates.map(async (email) => {
+          try {
+            const res = await fetch(`http://localhost:5050/api/v0/chore/${email}`, {
+              method: 'GET',
+              headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`,
+              },
+            });
+
+            if (!res.ok) throw res;
+            const chores = await res.json();
+            results[email] = chores;
+          } catch (err) {
+            console.error(`Error fetching chores for ${email}:`, err);
+            results[email] = [];
+          }
+        })
+      );
+
+      setChoresByRoommate(results);
+    };
+
+    if (roommates && roommates.length > 0) {
+      fetchChoresForAll();
+    }
+  }, [roommates]);
+
+  React.useEffect(() => {
+    getMyHouse();
+  }, []);
+
   return (
     <div className="background">
       <div className="yellow-curve3"></div>
@@ -20,11 +116,25 @@ function ChoresList() {
 
       <div className="my-chores2">
           <div className = "my-chores-card2">
-            <div className = "chores1">
-                <Chore chore_name={"trash"} assigned={"Hayley"} completed={false}></Chore>
-                <Chore chore_name={"sweep floors"} assigned={"Kaylee"} completed={true}></Chore>
-                <Chore chore_name={"dishes"} assigned={"Michelle"} completed={false}></Chore>
-                <Chore chore_name={"wash pc"} assigned={"Fiona"} completed={true}></Chore>
+            <div className="chores1">
+            {Object.entries(choresByRoommate).map(([email, chores]) => (
+              <div key={email}>
+                <h3>{email}</h3>
+                {chores.length > 0 ? (
+                  chores.map((chore, idx) => (
+                    <Chore
+                      key={idx}
+                      chore_name={chore.name}
+                      completed={chore.completed}
+                      assigned={email}
+                    />
+                  ))
+                ) : (
+                  <p>No chores assigned</p> // optional fallback text
+                )}
+              </div>
+            ))}
+
             </div>
           </div>
         </div>

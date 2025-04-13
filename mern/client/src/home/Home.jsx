@@ -43,7 +43,7 @@ function Home() {
   const getMyChores = () => {
     const token = localStorage.getItem('token');
 
-    fetch(`http://localhost:5050/api/v0/chore`, {
+    fetch(`http://localhost:5050/api/v0/chore/${ctx.currentUserEmail}`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
@@ -181,18 +181,18 @@ function Home() {
         <h1 className = "my-chores-title">My Chores</h1>
         <div className = "my-chores-card">
             <div className = "chores">
-                <Chore chore_name={"trash"}></Chore>
+                {/* <Chore chore_name={"trash"}></Chore>
                 <Chore chore_name={"sweep floors"}></Chore>
                 <Chore chore_name={"dishes"}></Chore>
                 <Chore chore_name={"wash pc"}></Chore>
-                <Chore chore_name={"play roblox"}></Chore>
-                {/* {myChores.map((chore, index) => (
+                <Chore chore_name={"play roblox"}></Chore> */}
+                {myChores.map((chore, index) => (
                   <Chore
                     key={index}
                     chore_name={chore.name}
                     onClick={() => toggleChoreCompletion(chore.name)}
                   />
-                ))} */}
+                ))}
             </div>
         </div>
         </div>
