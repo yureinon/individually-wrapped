@@ -35,7 +35,6 @@ export async function post(id, email) {
 }
 
 export async function put(id, inviteId) {
-  const userCollection = db.collection("user");
   const houseCollection = db.collection("house");
   const inviteCollection = db.collection("invite");
 

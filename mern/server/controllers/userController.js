@@ -1,6 +1,7 @@
 import jwt from 'jsonwebtoken';
 import db from '../db/connection.js';
 import bcrypt from 'bcrypt';
+import { ObjectId } from 'mongodb';
 
 const collection = db.collection('user');
 
@@ -15,7 +16,7 @@ export const signup = async (req) => {
   const salt = await bcrypt.genSalt(12);
   const pwhash = await bcrypt.hash(password, salt);
 
-  await collection.insertOne({ email, name, pwhash });
+  await collection.insertOne({ email, name, pwhash, status: 'free' });
 };
 
 export const get = async (req) => {
@@ -30,4 +31,11 @@ export const get = async (req) => {
   }
 
   return existing;
+};
+
+export const put = async (req) => {
+  const { status } = req.params;
+  const { id } = req.user;
+
+  await collection.updateOne({ _id: new ObjectId(id)}, { $set: { status: status } });
 };

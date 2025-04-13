@@ -77,4 +77,29 @@ router.get('/', auth.check, async (req, res) => {
   }
 });
 
+/**
+ * @swagger
+ * /api/v0/user/{status}:
+ *   put:
+ *     security:
+ *       - bearerAuth: []
+ *     description: Change user status
+ *     parameters:
+ *       - in: path
+ *         name: status
+ *         schema:
+ *           type: string
+ *         required: true
+ *         description: New status
+ *     responses:
+ *       200:
+ *         description: OK
+ *       default:
+ *         description: Unexpected Error
+ */
+router.put('/:status', auth.check, async (req, res) => {
+  const result = await user.put(req);
+  res.status(200).send(result);
+});
+
 export default router;
