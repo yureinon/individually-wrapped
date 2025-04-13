@@ -1,5 +1,5 @@
 import {BrowserRouter, Routes, Route} from 'react-router-dom';
-import AuthenticatedRoute from './AuthenticatedRoute';
+// import AuthenticatedRoute from './AuthenticatedRoute';
 import NotFound from './NotFound';
 import './styles/App.css'
 import './styles/Landing.css'
