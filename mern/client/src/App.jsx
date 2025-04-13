@@ -9,26 +9,20 @@ import Signup from './signup-login/Signup'
 import Home from './home/Home'
 import HouseSelection from './house-selection/page'
 import InvitePage from './add-members/page'
+import InvitationsCreate from './invitations-create/InvitationsCreate'
 import SchedulePage from './schedule/page'
-
-// function App() {
-//   // const [count, setCount] = useState(0)
-
-//   return (
-//     <Landing/>
-//   )
-// }
-
-// export default App
+import UserContext from './UserContext';
+import React from 'react';
 
 function App() {
-  // const [currentUserID, setUserID] = useState('');
+  const [currentUserEmail, setUserEmail] = React.useState('');
+  const [currentUserName, setUserName] = React.useState('');
   // const [selectedWorkspace, setSelectedWorkspace] = React.useState('');
   // const [selectedChannel, setChannel] = React.useState('');
 
   return (
-    // <UserContext.Provider value={{currentUserID, setUserID,
     //   selectedWorkspace, setSelectedWorkspace, selectedChannel, setChannel}}>
+    <UserContext.Provider value={{currentUserEmail, setUserEmail, currentUserName, setUserName}}>
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Landing />} />
@@ -45,6 +39,16 @@ function App() {
           <Route path="/home" element={
             // <AuthenticatedRoute>
               <Home />
+            // </AuthenticatedRoute>
+          } />
+          <Route path="/schedule" element={
+            // <AuthenticatedRoute>
+              <SchedulePage />
+            // </AuthenticatedRoute>
+          } />
+          <Route path="/invitationscreate" element={
+            // <AuthenticatedRoute>
+              <InvitationsCreate />
             // </AuthenticatedRoute>
           } />
           <Route path="/houseselection" element={
@@ -66,7 +70,7 @@ function App() {
           />
         </Routes>
       </BrowserRouter>
-    // </UserContext.Provider>
+    </UserContext.Provider>
   );
 }
 

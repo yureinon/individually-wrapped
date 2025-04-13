@@ -67,7 +67,7 @@
   color: black;
 }
 
-.elipses {
+.elipses1 {
   align-self: flex-end;
   margin-right: 15px;
   width: 5px;
@@ -75,6 +75,7 @@
   color: rgba(0, 0, 0, 0.5);
   background: none;
   padding: 0;
+  box-shadow: none;
 }
 
 .donebutton {

@@ -2,11 +2,19 @@ import * as React from 'react';
 import '../styles/Home.css'
 import Chore from './Chore.jsx'
 import Roommate from './Roommate.jsx'
+import {useNavigate} from 'react-router-dom';
 // import nerdImg from '../assets/nerd.png'
+import React from 'react';
+import UserContext from '../UserContext.jsx';
+import StatusContext from './StatusContext.jsx';
+import StatusPopup from './StatusPopup.jsx';
 
 
 function Home() {
-
+  const navigate = useNavigate();
+  const [status, setStatus] = React.useState("free");
+  const ctx = React.useContext(UserContext);
+  const curusername = ctx.currentUserName;
   const [myChores, setMyChores] = React.useState([]);
   // const [roommates, setRoommates] = React.useState([]);
   // const [homeName, setHomeName] = React.useState("");
@@ -112,14 +120,17 @@ function Home() {
 
 
   return (
+    <StatusContext.Provider value={{status, setStatus}}>
     <div className = "home">
       <div className = "nav-bar">
         <button className="broom-button"><i className="fa-solid fa-broom"></i></button>
       </div>
       <div className = "roommates">
-        <h1 className = "roommates-title">Roommates</h1>
+        <span className="popuproom"><h1 className = "roommates-title">Roommates</h1><StatusPopup /></span>
         <div className = "roommates-card">
             <div className = "roommates-list">
+                <Roommate roommate_name={curusername} status={status} />
+
                 {/* <Roommate roommate_name={"Landlord"} status={"free"}></Roommate>
                 <Roommate roommate_name={"Hayley"} status={"dnd"}></Roommate>
                 <Roommate roommate_name={"Kaylee"} status={"away"}></Roommate>
@@ -158,7 +169,7 @@ function Home() {
             </div>
         </div>
       </div>
-    </div>
+    </StatusContext.Provider>
   )
 }
 

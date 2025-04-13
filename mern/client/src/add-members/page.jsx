@@ -62,8 +62,9 @@ function InvitePage() {
       </div>
       <img src={nerdImg} className="nerdimg"/>
       <span className="memberinput">
+
         <input className="inputinput" placeholder="User Email" value={newInvite} onChange={(e) => setNewInvite(e.target.value)}/>
-        <button className="elipses" onClick={postInvite}><i class="fa fa-plus"></i></button>
+        <button className="elipses1" onClick={postInvite}><i class="fa fa-plus"></i></button>
       </span>
       {/* <div className="invitelist">
         <AddedMember email={"molly@books.com"} accepted={false}/>
