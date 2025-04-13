@@ -34,6 +34,28 @@ export async function post(id, email) {
   });
 }
 
+export async function put(id, inviteId) {
+  const userCollection = db.collection("user");
+  const houseCollection = db.collection("house");
+  const inviteCollection = db.collection("invite");
+
+  // update accepted to true
+  const invite = await inviteCollection.findOneAndUpdate(
+    { _id: new ObjectId(inviteId), accepted: false },
+    { $set: { accepted: true } },
+    { new: true }
+  );
+  if (!invite) {
+    throw new Error("Invite does not exist");
+  }
+
+  // add to members list
+  await houseCollection.updateOne(
+    { _id: new ObjectId(invite.house.id) },
+    { $push: { members: invite.email } }
+  );
+}
+
 export async function getInbound(id) {
   const userCollection = db.collection('user');
   const inviteCollection = db.collection('invite');
