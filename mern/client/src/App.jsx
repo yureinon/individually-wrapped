@@ -12,17 +12,21 @@ import InvitePage from './add-members/page'
 import InvitationsCreate from './invitations-create/InvitationsCreate'
 import SchedulePage from './schedule/page'
 import UserContext from './UserContext';
+import HouseContext from './HouseContext';
 import React from 'react';
 
 function App() {
   const [currentUserEmail, setUserEmail] = React.useState('');
   const [currentUserName, setUserName] = React.useState('');
+  const [houseName, setHouseName] = React.useState('');
+  const [houseType, setHouseType] = React.useState('');
   // const [selectedWorkspace, setSelectedWorkspace] = React.useState('');
   // const [selectedChannel, setChannel] = React.useState('');
 
   return (
     //   selectedWorkspace, setSelectedWorkspace, selectedChannel, setChannel}}>
     <UserContext.Provider value={{currentUserEmail, setUserEmail, currentUserName, setUserName}}>
+      <HouseContext.Provider value={{houseName, setHouseName, houseType, setHouseType}}>
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Landing />} />
@@ -70,6 +74,7 @@ function App() {
           />
         </Routes>
       </BrowserRouter>
+      </HouseContext.Provider>
     </UserContext.Provider>
   );
 }

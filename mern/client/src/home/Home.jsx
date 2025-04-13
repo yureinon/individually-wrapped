@@ -13,10 +13,12 @@ function Home() {
   const navigate = useNavigate();
   const [status, setStatus] = React.useState("free");
   const ctx = React.useContext(UserContext);
+  console.log(ctx.currentUserEmail);
+  console.log(ctx.currentUserName);
   const curusername = ctx.currentUserName;
   const [myChores, setMyChores] = React.useState([]);
-  // const [roommates, setRoommates] = React.useState([]);
-  // const [homeName, setHomeName] = React.useState("");
+  const [roommates, setRoommates] = React.useState([]);
+  const [homeName, setHomeName] = React.useState("");
   const [curRoommateName, setCurRoommateName] = React.useState("");
   const [curRoommateStatus, setCurRoommateStatus] = React.useState("");
   const token = localStorage.getItem('token');
@@ -42,7 +44,7 @@ function Home() {
   };
 
   const getMyChores = () => {
-    fetch(`http://localhost:3010/api/v0/chore`, {
+    fetch(`http://localhost:5050/api/v0/chore`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
@@ -63,8 +65,8 @@ function Home() {
         });
   };
 
-  const getMyHouse = () => {
-    fetch(`http://localhost:3010/api/v0/house`, {
+  const getMyHouse = async () => {
+    await fetch(`http://localhost:5050/api/v0/house`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
@@ -77,11 +79,14 @@ function Home() {
           }
           return response.json();
         })
-        // .then((json) => {
-          // setRoommates(json.memberList);
-          // setHomeName (json.name);
-        // })
+        .then((json) => {
+          setRoommates(json.memberList);
+          setHomeName (json.name);
+        })
         .catch((error) => {
+          if (error.status === 404) {
+            navigate('/invitationscreate')
+          }
           throw(error);
         });
   };
@@ -112,10 +117,10 @@ function Home() {
   
 
   // get all my chores upon render
-  // React.useEffect(() => {
-  //   getMyChores();
-  //   getMyHouse();
-  // }, []);
+  React.useEffect(() => {
+    getMyChores();
+    getMyHouse();
+  }, []);
 
 
   return (
@@ -125,7 +130,7 @@ function Home() {
       <div className = "nav-bar">
       <button className="broom-button" onClick={() => navigate("/schedule")}><i className="fa-solid fa-broom"></i></button>
       </div>
-      <h1 className="home-name">Temporary Name</h1>
+      <h1 className="home-name">{homeName}</h1>
       <div className = "roommates">
         <span className="popuproom"><h1 className = "roommates-title">Roommates</h1><StatusPopup /></span>
         <div className = "roommates-card">
@@ -141,10 +146,11 @@ function Home() {
 
                 {/* create function to call getUser() to update state values? */}
                 {/* {roommates.map((roommate, index) => (
+                  roommate.email !== ctx.currentUserEmail
                   <Roommate
                     key={index}
-                    roommate_name={ROOMMATE_NAME}
-                    status={STATUS}
+                    roommate_name={roommate.name}
+                    status={roommate.status}
                   />
                 ))} */}
             </div>

@@ -1,17 +1,21 @@
 import React from 'react';
 import '../styles/InvitationsCreate.css'
 import {useNavigate} from 'react-router-dom';
+import HouseContext from '../HouseContext';
 
 function CreateHouse() {
   const navigate = useNavigate();
   const [popupVisible, setPopupVisible] = React.useState(false);
   const [inputValue, setInputValue] = React.useState("");
+  const htx = React.useContext(HouseContext);
   const handleSubmit = (e) => {
     e.preventDefault();
+    htx.setHouseName(inputValue);
     setInputValue("");
     setPopupVisible(false);
     navigate("/houseselection")
   };
+  
   return (
     <div className="invitations-create">
       <button className = "create-button" onClick={() => setPopupVisible(true)}>

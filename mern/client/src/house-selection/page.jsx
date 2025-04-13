@@ -20,7 +20,6 @@ function HouseSelection() {
         <Button text={"House"}/>
         <Button text={"Apartment"}/>
       </div>
-      <button className="donebutton1">Done</button>
     </div>
   );
 }

@@ -2,8 +2,10 @@ import '../styles/Login.css'
 import nerdImg from '../assets/nerd.png'
 import {useNavigate} from 'react-router-dom';
 import React from 'react';
+import UserContext from '../UserContext';
 
 function Login() {
+  const utx = React.useContext(UserContext);
   const [credentials, setCredentials] =
       React.useState({email: '', password: ''});
   const handleInputChange = (event) => {
@@ -14,7 +16,7 @@ function Login() {
     }));
   };
   const login = async () => {
-    console.log(credentials);
+    localStorage.removeItem('token');
     await fetch(`http://localhost:5050/api/v0/login`, {
       method: "POST",
       body: JSON.stringify(credentials),
@@ -26,6 +28,13 @@ function Login() {
         if (!res.ok) {
           throw res;
         }
+        return res.json();
+      })
+      .then((json) => {
+        localStorage.setItem('token', json.accessToken);
+        utx.setUserName(json.name);
+        utx.setUserEmail(json.email);
+        
         navigate("/home");
       })
       .catch((err) => {

@@ -12,7 +12,7 @@ function InvitationsCreate() {
   return (
     <>
         <div className = "invitations-create">
-            <button className="btn" onClick={() => navigate("/")}><i className="fa fa-arrow-left"></i></button>
+            <button className="btn" onClick={() => navigate("/houseselection")}><i className="fa fa-arrow-left"></i></button>
             <img src={nerdImg} />
             <CreateHouse />
             <div className = "invitations">
