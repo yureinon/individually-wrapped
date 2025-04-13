@@ -3,7 +3,7 @@ import {BrowserRouter, Routes, Route} from 'react-router-dom';
 import NotFound from './NotFound';
 import './styles/App.css'
 import './styles/Landing.css'
-import Landing from './signup-login/landing'
+import Landing from './signup-login/landing.jsx'
 import Login from './signup-login/Login'
 import Signup from './signup-login/Signup'
 import Home from './home/Home'
