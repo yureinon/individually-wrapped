@@ -11,15 +11,18 @@ import HouseSelection from './house-selection/page'
 import InvitePage from './add-members/page'
 import InvitationsCreate from './invitations-create/InvitationsCreate'
 import SchedulePage from './schedule/page'
+import UserContext from './UserContext';
+import React from 'react';
 
 function App() {
-  // const [currentUserID, setUserID] = useState('');
+  const [currentUserEmail, setUserEmail] = React.useState('');
+  const [currentUserName, setUserName] = React.useState('');
   // const [selectedWorkspace, setSelectedWorkspace] = React.useState('');
   // const [selectedChannel, setChannel] = React.useState('');
 
   return (
-    // <UserContext.Provider value={{currentUserID, setUserID,
     //   selectedWorkspace, setSelectedWorkspace, selectedChannel, setChannel}}>
+    <UserContext.Provider value={{currentUserEmail, setUserEmail, currentUserName, setUserName}}>
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Landing />} />
@@ -67,7 +70,7 @@ function App() {
           />
         </Routes>
       </BrowserRouter>
-    // </UserContext.Provider>
+    </UserContext.Provider>
   );
 }
 

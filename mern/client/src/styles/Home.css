@@ -30,6 +30,25 @@
     border-radius: 999px;
 }
 
+.popuproom {
+    display: flex;
+    flex-direction: row;
+    gap: 50px;
+    justify-content: center;
+    align-items: center;
+}
+
+.pbutton {
+    padding: 0px;
+    width: 100px;
+    justify-self: flex-end;
+    background: none;
+    box-shadow: none;
+    text-decoration: underline;
+    font-weight: bold;
+    font-size: 12px;
+}
+
 .roommates {
     display: flex;
     flex-direction: column;
