@@ -87,27 +87,31 @@ function RotateChores() {
     .catch((err) => {
       console.log(err);
     })
-  }
+  };
   const curday = new Date().getDay();
-  if (curday == 0) {
-    changeRotation();
-  }
+  React.useEffect(() => {
+    if (curday == 4) {
+      console.log('aa');
+      changeRotation();
+    }
+  }, [curday]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+    const ind = roommateNames.indexOf(selectedEvent);
     const event = {
-      name: selectedEvent,
-      chore: selectedChore,
-      timestamp: new Date().toISOString()
+      name: selectedChore,
+      email: roommateEmails[ind],
+      user: selectedEvent,
     };
+    console.log(event);
 
     const token = localStorage.getItem('token');
 
     try {
-      const res = await fetch(`http://localhost:5050/api/v0/event`, {
+      const res = await fetch(`http://localhost:5050/api/v0/chore`, {
         method: "POST",
-        body: JSON.stringify(event),
+        body: JSON.stringify([event]),
         headers: {
           'Content-Type': 'application/json',
           'Authorization': `Bearer ${token}`,

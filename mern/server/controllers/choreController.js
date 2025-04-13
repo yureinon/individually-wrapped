@@ -31,6 +31,7 @@ export async function post(id, body) {
     // insert new chore: name, email, house, completed
     await choreCollection.insertOne({
       name: chore.name,
+      user: chore.user,
       email: chore.email,
       house: house._id.toString(),
       completed: false,
@@ -110,7 +111,7 @@ export async function get(id, email) {
   }
 
   const chores = await choreCollection
-    .find({ house: house._id.toString(), email: email }, { projection: {_id: 0, name: 1, completed: 1} })
+    .find({ house: house._id.toString(), email: email }, { projection: {_id: 0, name: 1, completed: 1, user: 1} })
     .toArray();
   return chores;
 }

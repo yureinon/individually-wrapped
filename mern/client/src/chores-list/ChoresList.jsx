@@ -117,20 +117,20 @@ function ChoresList() {
       <div className="my-chores2">
           <div className = "my-chores-card2">
             <div className="chores1">
-            {Object.entries(choresByRoommate).map(([email, chores]) => (
-              <div key={email}>
-                <h3>{email}</h3>
+            {Object.entries(choresByRoommate).map(([user, chores]) => (
+              <div key={user}>
+                <h3>{chores[0]?.user}</h3>
                 {chores.length > 0 ? (
                   chores.map((chore, idx) => (
                     <Chore
                       key={idx}
                       chore_name={chore.name}
                       completed={chore.completed}
-                      assigned={email}
+                      assigned={null}
                     />
                   ))
                 ) : (
-                  <p>No chores assigned</p> // optional fallback text
+                  null // optional fallback text
                 )}
               </div>
             ))}
