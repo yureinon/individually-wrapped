@@ -1,6 +1,6 @@
-import express from "express";
-import * as invite from "../controllers/inviteController.js";
-import * as auth from "../controllers/authController.js";
+import express from 'express';
+import * as invite from '../controllers/inviteController.js';
+import * as auth from '../controllers/authController.js';
 
 const router = express.Router();
 
@@ -26,18 +26,37 @@ const router = express.Router();
  *       default:
  *         description: Unexpected Error
  */
-router.post("/:email", auth.check, async (req, res) => {
+router.post('/:email', auth.check, async (req, res) => {
   try {
     const { id } = req.user;
     await invite.post(id, req.params.email);
     res.status(201).send();
   } catch (error) {
-    if (error.message == "Invite already exists") {
+    if (error.message == 'Invite already exists') {
       res.status(409).send();
     } else {
       res.status(404).send();
     }
   }
+});
+
+/**
+ * @swagger
+ * /api/v0/invite/inbound:
+ *   get:
+ *     security:
+ *       - bearerAuth: []
+ *     description: Inbound invitations
+ *     responses:
+ *       200:
+ *         description: Found inbound invitations
+ *       default:
+ *         description: Unexpected Error
+ */
+router.get('/inbound', auth.check, async (req, res) => {
+  const { id } = req.user;
+  const result = await invite.getInbound(id);
+  res.status(200).send(result);
 });
 
 export default router;
