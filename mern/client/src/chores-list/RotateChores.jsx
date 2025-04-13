@@ -49,7 +49,7 @@ function RotateChores() {
         // Now fetch all names
         const token = localStorage.getItem('token');
         const namePromises = roommateEmails.map(email =>
-          fetch(`http://localhost:5050/api/v0/user/${email}`, {
+          fetch(`http://localhost:5050/api/v0/user?email=${email}`, {
             method: "GET",
             headers: {
               'Content-Type': 'application/json',
