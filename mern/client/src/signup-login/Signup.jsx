@@ -18,7 +18,7 @@ function Signup() {
   const signup = async (event) => {
     localStorage.removeItem('token');
     console.log(credentials);
-    await fetch(`http://localhost:5050/api/v0/user`, {
+    await fetch(`https://individually-wrapped.onrender.com/api/v0/user`, {
       method: "POST",
       body: JSON.stringify(credentials),
       headers: {

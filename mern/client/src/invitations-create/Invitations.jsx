@@ -3,7 +3,7 @@ function Invitation(props) {
   const navigate = useNavigate();
   const acceptInvite = async () => {
     const token = localStorage.getItem('token');
-    await fetch(`http://localhost:5050/api/v0/invite/${props.id}`, {
+    await fetch(`https://individually-wrapped.onrender.com/api/v0/invite/${props.id}`, {
       method: "PUT",
       headers: {
         'Content-Type': 'application/json',

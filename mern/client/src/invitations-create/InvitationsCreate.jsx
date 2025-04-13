@@ -15,7 +15,7 @@ function InvitationsCreate() {
   
   const getInvites = async () => {
     const token = localStorage.getItem('token');
-    await fetch(`http://localhost:5050/api/v0/invite/inbound`, {
+    await fetch(`https://individually-wrapped.onrender.com/api/v0/invite/inbound`, {
       method: "GET",
       headers: {
         'Content-Type': 'application/json',

@@ -13,7 +13,7 @@ function Button(props) {
   };
   const createMyHouse = async () => {
     const token = localStorage.getItem('token');
-    await fetch(`http://localhost:5050/api/v0/house`, {
+    await fetch(`https://individually-wrapped.onrender.com/api/v0/house`, {
       method: 'POST',
       body: JSON.stringify({type: htx.houseType, name: htx.houseName}),
       headers: {

@@ -46,7 +46,7 @@ function Home() {
   const getMyChores = () => {
     const token = localStorage.getItem('token');
 
-    fetch(`http://localhost:5050/api/v0/chore/${ctx.currentUserEmail}`, {
+    fetch(`https://individually-wrapped.onrender.com/api/v0/chore/${ctx.currentUserEmail}`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
@@ -73,7 +73,7 @@ function Home() {
   const getMyHouse = async () => {
     const token = localStorage.getItem('token');
 
-    await fetch(`http://localhost:5050/api/v0/house`, {
+    await fetch(`https://individually-wrapped.onrender.com/api/v0/house`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
@@ -105,7 +105,7 @@ function Home() {
   const getUser = async (email) => {
     const token = localStorage.getItem('token');
 
-    return await fetch(`http://localhost:5050/api/v0/user?email=${email}`, {
+    return await fetch(`https://individually-wrapped.onrender.com/api/v0/user?email=${email}`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',

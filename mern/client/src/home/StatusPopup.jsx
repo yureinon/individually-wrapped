@@ -27,7 +27,7 @@ function StatusPopup() {
 
   const changeStatus = async () => {
     const token = localStorage.getItem('token');
-    await fetch(`http://localhost:5050/api/v0/user/${ctx.status}`, {
+    await fetch(`https://individually-wrapped.onrender.com/api/v0/user/${ctx.status}`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',

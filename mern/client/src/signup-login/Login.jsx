@@ -17,7 +17,7 @@ function Login() {
   };
   const getMyHouse = async () => {
     const token = localStorage.getItem('token');
-    await fetch(`http://localhost:5050/api/v0/house`, {
+    await fetch(`https://individually-wrapped.onrender.com/api/v0/house`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
@@ -39,7 +39,7 @@ function Login() {
   };
   const login = async () => {
     localStorage.removeItem('token');
-    await fetch(`http://localhost:5050/api/v0/login`, {
+    await fetch(`https://individually-wrapped.onrender.com/api/v0/login`, {
       method: "POST",
       body: JSON.stringify(credentials),
       headers: {

@@ -14,7 +14,7 @@ function RotateChores() {
 
   const getRoommateEmails = async () => {
     const token = localStorage.getItem('token');
-    await fetch(`http://localhost:5050/api/v0/house`, {
+    await fetch(`https://individually-wrapped.onrender.com/api/v0/house`, {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',
@@ -48,7 +48,7 @@ function RotateChores() {
         // Now fetch all names
         const token = localStorage.getItem('token');
         const namePromises = roommateEmails.map(email =>
-          fetch(`http://localhost:5050/api/v0/user?email=${email}`, {
+          fetch(`https://individually-wrapped.onrender.com/api/v0/user?email=${email}`, {
             method: "GET",
             headers: {
               'Content-Type': 'application/json',
@@ -72,7 +72,7 @@ function RotateChores() {
   
   const changeRotation = async () => {
     const token = localStorage.getItem('token');
-    await fetch(`http://localhost:5050/api/v0/chore`, {
+    await fetch(`https://individually-wrapped.onrender.com/api/v0/chore`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
@@ -109,7 +109,7 @@ function RotateChores() {
     const token = localStorage.getItem('token');
 
     try {
-      const res = await fetch(`http://localhost:5050/api/v0/chore`, {
+      const res = await fetch(`https://individually-wrapped.onrender.com/api/v0/chore`, {
         method: "POST",
         body: JSON.stringify([event]),
         headers: {

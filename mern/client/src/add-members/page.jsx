@@ -12,7 +12,7 @@ function InvitePage() {
 
   const postInvite = async () => {
     if (!newInvite.trim()) return;
-    await fetch(`http://localhost:5050/api/v0/invite/${newInvite}`, {
+    await fetch(`https://individually-wrapped.onrender.com/api/v0/invite/${newInvite}`, {
       method: "POST",
       headers: {
         'Content-Type': 'application/json',
@@ -33,7 +33,7 @@ function InvitePage() {
   };
 
   const getInvites = () => {
-    fetch(`http://localhost:5050/api/v0/invite/outbound`, {
+    fetch(`https://individually-wrapped.onrender.com/api/v0/invite/outbound`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',

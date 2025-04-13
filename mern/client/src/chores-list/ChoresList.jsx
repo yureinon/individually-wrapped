@@ -15,7 +15,7 @@ function ChoresList() {
   const getMyChores = (email) => {
     const token = localStorage.getItem('token');
 
-    fetch(`http://localhost:5050/api/v0/chore/${email}`, {
+    fetch(`https://individually-wrapped.onrender.com/api/v0/chore/${email}`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
@@ -40,7 +40,7 @@ function ChoresList() {
   const getMyHouse = async () => {
     const token = localStorage.getItem('token');
 
-    await fetch(`http://localhost:5050/api/v0/house`, {
+    await fetch(`https://individually-wrapped.onrender.com/api/v0/house`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
@@ -74,7 +74,7 @@ function ChoresList() {
       await Promise.all(
         roommates.map(async (email) => {
           try {
-            const res = await fetch(`http://localhost:5050/api/v0/chore/${email}`, {
+            const res = await fetch(`https://individually-wrapped.onrender.com/api/v0/chore/${email}`, {
               method: 'GET',
               headers: {
                 'Content-Type': 'application/json',

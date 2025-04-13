@@ -25,7 +25,7 @@ function CreateEvent() {
 
   const sendEvent = async () => {
     const token = localStorage.getItem('token');
-    await fetch(`http://localhost:5050/api/v0/event`, {
+    await fetch(`https://individually-wrapped.onrender.com/api/v0/event`, {
       method: "POST",
       body: JSON.stringify(event),
       headers: {

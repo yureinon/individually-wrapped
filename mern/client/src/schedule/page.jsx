@@ -58,7 +58,7 @@ function SchedulePage() {
   }, [fetchedevents, current]);
   const getEvents = async () => {
     const token = localStorage.getItem('token');
-    await fetch(`http://localhost:5050/api/v0/event/${current}`, {
+    await fetch(`https://individually-wrapped.onrender.com/api/v0/event/${current}`, {
       method: "GET",
       headers: {
         'Content-Type': 'application/json',
