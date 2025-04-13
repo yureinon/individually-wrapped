@@ -38,7 +38,7 @@ router.post('/', auth.check, async (req, res) => {
     const result = await house.post(req);
     res.status(201).send(result);
   } catch (error) {
-    console.log(error.message)
+
     if (error) {
       res.status(409).send();
     }

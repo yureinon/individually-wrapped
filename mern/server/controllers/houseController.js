@@ -17,7 +17,6 @@ export const post = async (req) => {
   // check if user in house
   const inHouse = await houseCollection.findOne({ members: email });
   if (inHouse) {
-    console.log(inHouse);
     throw new Error('Already in a house');
   }
 
@@ -26,7 +25,6 @@ export const post = async (req) => {
     type,
     members: [email.email],
   });
-  console.log(house);
   return { id: house.insertedId };
 };
 
