@@ -126,22 +126,31 @@ router.put("/completed", auth.check, async (req, res) => {
 
 /**
  * @swagger
- * /api/v0/chore:
+ * /api/v0/chore/{email}:
  *   get:
  *     security:
  *       - bearerAuth: []
  *     description: Get's all chores
+ *     parameters:
+ *       - in: path
+ *         name: email
+ *         schema:
+ *           type: string
+ *         required: true
+ *         description: Email of person to get chores from
  *     responses:
  *       200:
  *         description: Chores found
  *       default:
  *         description: Unexpected Error
  */
-router.get("/", auth.check, async (req, res) => {
+router.get("/:email", auth.check, async (req, res) => {
   try {
-    const result = await chore.get();
+    const { id } = req.user;
+    const result = await chore.get(id, req.params.email);
     res.status(200).send(result);
   } catch (error) {
+    console.log(error.message);
     res.status(500).send();
   }
 });

@@ -93,10 +93,24 @@ export async function toggleCompleted(id, name) {
   );
 }
 
-export async function get() {
+export async function get(id, email) {
+  const userCollection = db.collection("user");
+  const houseCollection = db.collection("house");
   const choreCollection = db.collection("chore");
+
+  // get email of logged in user
+  const { email: loggedEmail } = await userCollection.findOne({
+    _id: new ObjectId(id),
+  });
+
+  // get house member list
+  const house = await houseCollection.findOne({ members: {$all: [email, loggedEmail]} });
+  if (!house) {
+    throw new Error("House does not exist for user");
+  }
+
   const chores = await choreCollection
-    .find({}, { projection: {_id: 0, email: 1, name: 1, completed: 1} })
+    .find({ house: house._id.toString(), email: email }, { projection: {_id: 0, name: 1, completed: 1} })
     .toArray();
   return chores;
 }
