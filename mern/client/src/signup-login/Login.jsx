@@ -13,7 +13,7 @@ function Login() {
       [name]: value
     }));
   };
-  const login = async (event) => {
+  const login = async () => {
     console.log(credentials);
     await fetch(`http://localhost:5050/api/v0/login`, {
       method: "POST",
