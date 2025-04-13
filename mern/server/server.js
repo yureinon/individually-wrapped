@@ -7,6 +7,7 @@ import user from './routes/user.js';
 import house from './routes/house.js';
 import invite from "./routes/invite.js";
 import event from './routes/event.js';
+import chore from "./routes/chore.js";
 
 const PORT = process.env.PORT || 5050;
 const app = express();
@@ -42,6 +43,7 @@ app.use('/api/v0/user', user);
 app.use('/api/v0/house', house)
 app.use("/api/v0/invite", invite);
 app.use('/api/v0/event', event)
+app.use("/api/v0/chore", chore);
 
 // start the Express server
 app.listen(PORT, () => {
