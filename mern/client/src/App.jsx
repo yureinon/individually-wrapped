@@ -13,7 +13,9 @@ import InvitationsCreate from './invitations-create/InvitationsCreate'
 import SchedulePage from './schedule/page'
 import UserContext from './UserContext';
 import HouseContext from './HouseContext';
+import ChoresList from './chores-list/ChoresList'
 import React from 'react';
+import Chore from './home/Chore';
 
 function App() {
   const [currentUserEmail, setUserEmail] = React.useState('');
@@ -63,6 +65,11 @@ function App() {
           <Route path="/invites" element={
             // <AuthenticatedRoute>
               <InvitePage />
+            // </AuthenticatedRoute>
+          } />
+          <Route path="/choreslist" element={
+            // <AuthenticatedRoute>
+              <ChoresList />
             // </AuthenticatedRoute>
           } />
           <Route path="*"

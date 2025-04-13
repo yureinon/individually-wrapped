@@ -148,7 +148,8 @@ function Home() {
     <div className = "home">
     <div className="yellow-curve1"></div>
       <div className = "nav-bar">
-      <button className="broom-button" onClick={() => navigate("/schedule")}><i className="fa-solid fa-broom"></i></button>
+        <button className="broom-button" onClick={() => navigate("/choreslist")}><i className="fa-solid fa-broom"></i></button>
+        <button className="calendar-button" onClick={() => navigate("/schedule")}><i className="fa-solid fa-calendar"></i></button>
       </div>
       <h1 className="home-name">{homeName}</h1>
       <div className = "roommates">
