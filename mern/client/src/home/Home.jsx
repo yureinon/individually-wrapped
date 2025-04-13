@@ -1,4 +1,3 @@
-import * as React from 'react';
 import '../styles/Home.css'
 import Chore from './Chore.jsx'
 import Roommate from './Roommate.jsx'
@@ -113,29 +112,31 @@ function Home() {
   
 
   // get all my chores upon render
-  React.useEffect(() => {
-    getMyChores();
-    getMyHouse();
-  }, []);
+  // React.useEffect(() => {
+  //   getMyChores();
+  //   getMyHouse();
+  // }, []);
 
 
   return (
     <StatusContext.Provider value={{status, setStatus}}>
     <div className = "home">
+    <div className="yellow-curve1"></div>
       <div className = "nav-bar">
-        <button className="broom-button"><i className="fa-solid fa-broom"></i></button>
+      <button className="broom-button" onClick={() => navigate("/schedule")}><i className="fa-solid fa-broom"></i></button>
       </div>
+      <h1 className="home-name">Temporary Name</h1>
       <div className = "roommates">
         <span className="popuproom"><h1 className = "roommates-title">Roommates</h1><StatusPopup /></span>
         <div className = "roommates-card">
             <div className = "roommates-list">
                 <Roommate roommate_name={curusername} status={status} />
 
-                {/* <Roommate roommate_name={"Landlord"} status={"free"}></Roommate>
+                <Roommate roommate_name={"Landlord"} status={"free"}></Roommate>
                 <Roommate roommate_name={"Hayley"} status={"dnd"}></Roommate>
                 <Roommate roommate_name={"Kaylee"} status={"away"}></Roommate>
                 <Roommate roommate_name={"Michelle"} status={"asleep"}></Roommate>
-                <Roommate roommate_name={"Fiona"} status={"free"}></Roommate> */}
+                <Roommate roommate_name={"Fiona"} status={"free"}></Roommate>
 
 
                 {/* create function to call getUser() to update state values? */}
@@ -154,21 +155,23 @@ function Home() {
         <h1 className = "my-chores-title">My Chores</h1>
         <div className = "my-chores-card">
             <div className = "chores">
-                {/* <Chore chore_name={"trash"}></Chore>
+                <Chore chore_name={"trash"}></Chore>
                 <Chore chore_name={"sweep floors"}></Chore>
                 <Chore chore_name={"dishes"}></Chore>
                 <Chore chore_name={"wash pc"}></Chore>
-                <Chore chore_name={"play roblox"}></Chore> */}
-                {myChores.map((chore, index) => (
+                <Chore chore_name={"play roblox"}></Chore>
+                {/* {myChores.map((chore, index) => (
                   <Chore
                     key={index}
                     chore_name={chore.name}
                     onClick={() => toggleChoreCompletion(chore.name)}
                   />
-                ))}
+                ))} */}
             </div>
         </div>
+        </div>
       </div>
+
     </StatusContext.Provider>
   )
 }
