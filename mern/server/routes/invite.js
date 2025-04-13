@@ -59,4 +59,23 @@ router.get('/inbound', auth.check, async (req, res) => {
   res.status(200).send(result);
 });
 
+/**
+ * @swagger
+ * /api/v0/invite/outbound:
+ *   get:
+ *     security:
+ *       - bearerAuth: []
+ *     description: Outbound invitations
+ *     responses:
+ *       200:
+ *         description: Found outbound invitations
+ *       default:
+ *         description: Unexpected Error
+ */
+router.get('/outbound', auth.check, async (req, res) => {
+  const { id } = req.user;
+  const result = await invite.getOutbound(id);
+  res.status(200).send(result);
+});
+
 export default router;

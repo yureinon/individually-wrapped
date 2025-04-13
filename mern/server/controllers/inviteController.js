@@ -46,10 +46,46 @@ export async function getInbound(id) {
   // get invites
   const invite = await inviteCollection
     .aggregate([
-      { $match: { email: loggedEmail, accepted: false }},
-      { $project: { id: "$_id", _id: 0, house: 1 }
-      }]).toArray();
+      { $match: { email: loggedEmail, accepted: false } },
+      { $project: { id: '$_id', _id: 0, house: 1 } },
+    ])
+    .toArray();
 
   // return invite id and house
-  return invite
+  return invite;
+}
+
+export async function getOutbound(id) {
+  const userCollection = db.collection('user');
+  const houseCollection = db.collection('house');
+  const inviteCollection = db.collection('invite');
+
+  // get email of logged in user
+  const { email: loggedEmail } = await userCollection.findOne({
+    _id: new ObjectId(id),
+  });
+
+  // get house of logged in user
+  const house = await houseCollection.findOne(
+    { members: loggedEmail },
+    { _id: 1, name: 1 }
+  );
+
+  // get outbound invites of house
+  const invite = await inviteCollection
+    .aggregate([
+      { $match: { 'house.id': house._id.toString() } },
+      {
+        $project: {
+          id: '$_id',
+          _id: 0,
+          accepted: 1,
+          email: 1,
+        },
+      },
+    ])
+    .toArray();
+
+  // return invite id and house
+  return invite;
 }
