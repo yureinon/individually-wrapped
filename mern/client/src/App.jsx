@@ -12,17 +12,6 @@ import InvitePage from './add-members/page'
 import InvitationsCreate from './invitations-create/InvitationsCreate'
 import SchedulePage from './schedule/page'
 
-
-// function App() {
-//   // const [count, setCount] = useState(0)
-
-//   return (
-//     <Landing/>
-//   )
-// }
-
-// export default App
-
 function App() {
   // const [currentUserID, setUserID] = useState('');
   // const [selectedWorkspace, setSelectedWorkspace] = React.useState('');
@@ -33,7 +22,7 @@ function App() {
     //   selectedWorkspace, setSelectedWorkspace, selectedChannel, setChannel}}>
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<InvitationsCreate />} />
+          <Route path="/" element={<Landing />} />
           <Route path="/login" element={
             // <AuthenticatedRoute>
               <Login />
@@ -52,6 +41,11 @@ function App() {
           <Route path="/schedule" element={
             // <AuthenticatedRoute>
               <SchedulePage />
+            // </AuthenticatedRoute>
+          } />
+          <Route path="/invitationscreate" element={
+            // <AuthenticatedRoute>
+              <InvitationsCreate />
             // </AuthenticatedRoute>
           } />
           <Route path="/houseselection" element={

@@ -23,7 +23,6 @@ function InvitationsCreate() {
                     <Invitation sender={"Jane Doe"}></Invitation>
                     <Invitation sender={"Jane Doe"}></Invitation>
                     <Invitation sender={"Jane Doe"}></Invitation>
-                    
                 </div>
             </div>
         </div>

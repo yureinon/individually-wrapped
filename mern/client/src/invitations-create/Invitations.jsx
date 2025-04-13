@@ -1,16 +1,10 @@
 function Invitation(props) {
-//     return (
-//       <span className="invite">
-//         <div className="sender">{props.sender}</div>
-//         <div className="icon"><i className="fa-solid fa-arrow-left"></i></div>
-//       </span>
-//     );
-//   }
-
   return (
     <span className="invite">
       <div className="sender">{props.sender}</div>
-      <div className="icon"><i className="fa fa-hourglass-half"></i></div>
+      <div className="check-icon"><i className="fa-solid fa-check"></i></div>
+      <div className="x-icon"><i className="fa-solid fa-x"></i></div>
+      {/* <div className="check-icon"><i className="fa-solid fa-check"></i></div> */}
     </span>
   )
 }

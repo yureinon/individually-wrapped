@@ -160,3 +160,11 @@ img {
     justify-content: center;
     margin-top: 10px;
   }
+
+  .x-icon {
+    color: red;
+  }
+
+  .check-icon {
+    color: green;
+  }
