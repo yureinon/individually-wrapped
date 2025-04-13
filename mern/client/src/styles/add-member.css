@@ -1,0 +1,148 @@
+.background {
+  height: 100vh;
+  width: 100vw;
+  background: linear-gradient(to bottom, #FFFBEF 0%, #FFF4D1 100%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-family: 'Nunito', sans-serif;
+  color: black;
+}
+
+.btn {
+  position: absolute;
+  background-color: transparent;
+  border: none;
+  box-shadow: none;
+  padding: 0.5rem;
+  font-size: 1.2rem;
+  width: 15%;
+  color: black;
+  top: 0;
+  left: 0;
+}
+
+.header {
+  background-color: #D5EBFF;
+  padding: 20px;
+  text-align: center;
+  width: 240px;
+  border-radius: 999px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
+  font-weight: bold;
+  font-size: 20px;
+  margin-top: 10%;
+}
+
+.nerdimg {
+  width: 150px;
+  height: 170px;
+  align-self: flex-start;
+  margin-left: 20px;
+  margin-top: 10px;
+}
+
+.memberinput {
+  border-radius: 999px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
+  background-color: #FFDCF2;
+  color: black;
+  font-weight: bold;
+  font-size: 20px;
+  text-align: center;
+  padding: 10px;
+  width: 240px;
+  align-self: center;
+  display: flex;
+}
+
+.inputinput {
+  background-color: #FFDCF2;
+  border: none;
+  font-size: 20px;
+  font-weight: 700;
+  font-family: 'Nunito', sans-serif;
+  width: 100%;
+  align-self: flex-start;
+  color: black;
+}
+
+.elipses1 {
+  align-self: flex-end;
+  margin-right: 15px;
+  width: 5px;
+  justify-self: center;
+  color: rgba(0, 0, 0, 0.5);
+  background: none;
+  padding: 0;
+  box-shadow: none;
+}
+
+.donebutton {
+  align-self: flex-end;
+  position: absolute;
+  margin-right: 7%;
+  margin-top: 20px;
+  border-radius: 999px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
+  color: black;
+  background-color: #D8F5C2;
+  font-weight: bold;
+  font-size: 20px;
+  padding: 10px;
+  padding-right: 15px;
+  padding-left: 15px;
+  bottom: 20px;
+}
+
+.addedmember {
+  display: flex;
+  flex-direction: row;
+  margin-top: 20px;
+  border-radius: 999px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
+  color: black;
+  background-color: #FFFBEF;
+  font-weight: bold;
+  font-size: 15px;
+  padding: 10px;
+  padding-left: 20px;
+  padding-right: 20px;
+  gap: 10px;
+  width: 200px;
+}
+
+.emailtext {
+  width: 100%;
+  overflow: hidden;
+}
+
+.hourglass {
+  align-self: flex-end;
+  margin-right: 15px;
+  width: 5px;
+  justify-self: center;
+  color: #FFA500;
+  background: none;
+  padding: 0;
+}
+
+.checkmark {
+  align-self: flex-end;
+  margin-right: 15px;
+  width: 5px;
+  justify-self: center;
+  color: #A5D78E;
+  background: none;
+  padding: 0;
+}
+
+.invitelist {
+  overflow: scroll;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 100px;
+  padding: 10px;
+  margin-top: 2px;
+}

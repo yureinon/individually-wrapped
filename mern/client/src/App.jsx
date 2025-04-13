@@ -1,35 +1,89 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import {BrowserRouter, Routes, Route} from 'react-router-dom';
+// import AuthenticatedRoute from './AuthenticatedRoute';
+import NotFound from './NotFound';
+import './styles/App.css'
+import './styles/Landing.css'
+import Landing from './signup-login/landing'
+import Login from './signup-login/Login'
+import Signup from './signup-login/Signup'
+import Home from './home/Home'
+import HouseSelection from './house-selection/page'
+import InvitePage from './add-members/page'
+import InvitationsCreate from './invitations-create/InvitationsCreate'
+import SchedulePage from './schedule/page'
+import UserContext from './UserContext';
+import HouseContext from './HouseContext';
+import ChoresList from './chores-list/ChoresList'
+import React from 'react';
+import Chore from './home/Chore';
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [currentUserEmail, setUserEmail] = React.useState('');
+  const [currentUserName, setUserName] = React.useState('');
+  const [houseName, setHouseName] = React.useState('');
+  const [houseType, setHouseType] = React.useState('');
+  // const [selectedWorkspace, setSelectedWorkspace] = React.useState('');
+  // const [selectedChannel, setChannel] = React.useState('');
 
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    //   selectedWorkspace, setSelectedWorkspace, selectedChannel, setChannel}}>
+    <UserContext.Provider value={{currentUserEmail, setUserEmail, currentUserName, setUserName}}>
+      <HouseContext.Provider value={{houseName, setHouseName, houseType, setHouseType}}>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Landing />} />
+          <Route path="/login" element={
+            // <AuthenticatedRoute>
+              <Login />
+            // </AuthenticatedRoute>
+          } />
+          <Route path="/signup" element={
+            // <AuthenticatedRoute>
+              <Signup />
+            // </AuthenticatedRoute>
+          } />
+          <Route path="/home" element={
+            // <AuthenticatedRoute>
+              <Home />
+            // </AuthenticatedRoute>
+          } />
+          <Route path="/schedule" element={
+            // <AuthenticatedRoute>
+              <SchedulePage />
+            // </AuthenticatedRoute>
+          } />
+          <Route path="/invitationscreate" element={
+            // <AuthenticatedRoute>
+              <InvitationsCreate />
+            // </AuthenticatedRoute>
+          } />
+          <Route path="/houseselection" element={
+            // <AuthenticatedRoute>
+              <HouseSelection />
+            // </AuthenticatedRoute>
+          } />
+          <Route path="/invites" element={
+            // <AuthenticatedRoute>
+              <InvitePage />
+            // </AuthenticatedRoute>
+          } />
+          <Route path="/choreslist" element={
+            // <AuthenticatedRoute>
+              <ChoresList />
+            // </AuthenticatedRoute>
+          } />
+          <Route path="*"
+            element={
+              // <AuthenticatedRoute >
+                <NotFound />
+              // </AuthenticatedRoute>
+            }
+          />
+        </Routes>
+      </BrowserRouter>
+      </HouseContext.Provider>
+    </UserContext.Provider>
+  );
 }
 
-export default App
+export default App;

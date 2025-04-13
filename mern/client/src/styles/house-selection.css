@@ -1,0 +1,73 @@
+.background1 {
+  height: 100vh;
+  width: 100vw;
+  background: linear-gradient(to bottom, #FFFBEF 0%, #FFF4D1 100%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-family: 'Nunito', sans-serif;
+  color: black;
+}
+
+.header1 {
+  background-color: #D5EBFF;
+  padding: 20px;
+  padding-left: 50px;
+  padding-right: 50px;
+  border-radius: 999px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
+  font-weight: bold;
+  font-size: 20px;
+  margin-top: 10%;
+}
+
+.nerdimg1 {
+  width: 150px;
+  height: 170px;
+  align-self: flex-start;
+  margin-left: 20px;
+  padding: 0;
+}
+
+.housebutton1 {
+  border-radius: 999px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
+  background-color: #FFDCF2;
+  color: black;
+  font-weight: bold;
+  font-size: 20px;
+  text-align: center;
+  padding: 5px;
+  width: 190px;
+  align-self: center;
+}
+
+.buttons1 {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: black;
+  gap: 20px;
+}
+
+.campuslabel1 {
+  align-self: flex-start;
+  margin-left: 10%;
+  margin-top: 10px;
+  margin-bottom: 5px;
+}
+
+.donebutton1 {
+  align-self: flex-end;
+  margin-right: 7%;
+  margin-top: 20px;
+  border-radius: 999px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
+  color: black;
+  background-color: #D8F5C2;
+  font-weight: bold;
+  font-size: 20px;
+  padding: 10px;
+  padding-right: 15px;
+  padding-left: 15px;
+}

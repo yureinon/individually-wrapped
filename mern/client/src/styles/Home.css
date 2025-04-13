@@ -1,0 +1,186 @@
+.home {
+    height: 100vh;
+    width: 100vw;
+    background: #FFFBEF;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: linear-gradient(to bottom, #FFFBEF 0%, #FFF4D1 100%);
+    z-index: -1;
+}
+  
+.nav-bar {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    margin-top: -20%;
+    width: 70%;
+    height: 8%;
+    background-color: #D5EBFF;
+    border-radius: 999px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
+}
+
+.broom-button {
+    background-color: #BEE0FF;
+    border: none;
+    box-shadow: none;
+    padding: 0.5rem;
+    font-size: 1.2rem;
+    width: 17%;
+    height: 80%;
+    color: black;
+    border-radius: 999px;
+}
+
+.calendar-button {
+    background-color: #BEE0FF;
+    border: none;
+    box-shadow: none;
+    padding: 0.5rem;
+    font-size: 1.2rem;
+    width: 17%;
+    height: 80%;
+    color: black;
+    border-radius: 999px;
+}
+
+.popuproom {
+    display: flex;
+    flex-direction: row;
+    gap: 50px;
+    justify-content: center;
+    align-items: center;
+}
+
+.pbutton {
+    padding: 0px;
+    width: 100px;
+    justify-self: flex-end;
+    background: none;
+    box-shadow: none;
+    text-decoration: underline;
+    font-weight: bold;
+    font-size: 12px;
+}
+
+.roommates {
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+    height: 30%;
+}
+
+.roommates-title {
+    font-size: 110%;
+    color: black;
+    align-self: flex-start;
+}
+
+.roommates-card {
+    height: 100%;
+    background-color: #FFE3F4;
+    border-radius: 30px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
+    display: flex;
+    overflow: scroll;
+    border-top: 10%;
+    border-bottom: 10%;
+}
+
+.roommate {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+.roommates-list {
+    margin-left: 5%;
+    margin-top: 5%;
+    align-self: flex-start;
+}
+  
+.my-chores {
+    padding-top: 10%;
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+    height: 30%;
+}
+
+.my-chores-title {
+    font-size: 110%;
+    color: black;
+    align-self: flex-start;
+}
+
+.my-chores-card {
+    height: 100%;
+    background-color: #D5EBFF;
+    border-radius: 30px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
+    display: flex;
+    overflow: scroll;
+    border-top: 10%;
+    border-bottom: 10%;
+}
+
+.chores {
+    margin-left: 5%;
+    margin-top: 5%;
+    align-self: flex-start;
+}
+
+.chore-name {
+    color: black;
+}
+
+.chore {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+  }  
+
+.checkbox {
+    width: 20px;
+    height: 20px;
+    border: 2px solid black;
+    background-color: transparent;
+    cursor: pointer;
+    border-radius: 4px;
+    display: inline-block;
+    position: relative;
+}
+
+#free {
+    color: green;
+}
+
+#dnd {
+    color: rgb(66, 74, 187);
+}
+
+.icon {
+    color: black;
+}
+
+.home-name {
+    color:black;
+    padding-top: 10%;
+    font-size: 150%;
+}
+
+.yellow-curve1 {
+    width: 100%;
+    height: 15%;
+    background-color: #FFF4D1;
+    border-bottom-left-radius: 50px;
+    border-bottom-right-radius: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+  
