@@ -2,10 +2,13 @@ import React from 'react'
 import '../styles/house-selection.css'
 import nerdImg from '../assets/nerd.png'
 import Button from './button'
+import { useNavigate } from 'react-router-dom'
 
 function HouseSelection() {
+  const navigate = useNavigate();
   return (
     <div className="background1">
+      <button className="btn" onClick={() => navigate("/invitationscreate")}><i className="fa fa-arrow-left"></i></button>
       <div className="header1">
         Where do you live?
       </div>

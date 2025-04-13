@@ -2,9 +2,10 @@ import React from 'react'
 import '../styles/add-member.css'
 import nerdImg from '../assets/nerd.png'
 import AddedMember from './added';
+import { useNavigate } from 'react-router-dom';
 
 function InvitePage() {
-
+  const navigate = useNavigate();
   const [newInvite, setNewInvite] = React.useState('');
   const [invites, setInvites] = React.useState([]);
   const token = localStorage.getItem('token');
@@ -24,7 +25,6 @@ function InvitePage() {
         }
         setNewInvite('');
         getInvites();
-        // navigate("/home");
       })
       .catch((err) => {
         alert("Error posting invite");
@@ -44,7 +44,7 @@ function InvitePage() {
           if (!res.ok) {
             throw res;
           }
-          // return res.json();
+          return res.json();
         })
         .then((json) => {
           setInvites(json);
@@ -56,23 +56,15 @@ function InvitePage() {
 
   return (
     <div className="background">
-      <button className="btn"><i className="fa fa-arrow-left"></i></button>
+      <button className="btn" onClick={() => navigate('/invitationscreate')}><i className="fa fa-arrow-left"></i></button>
       <div className="header">
         Add Roommates
       </div>
       <img src={nerdImg} className="nerdimg"/>
       <span className="memberinput">
-
         <input className="inputinput" placeholder="User Email" value={newInvite} onChange={(e) => setNewInvite(e.target.value)}/>
-        <button className="elipses1" onClick={postInvite}><i class="fa fa-plus"></i></button>
+        <button className="elipses1" onClick={postInvite}><i className="fa fa-plus"></i></button>
       </span>
-      {/* <div className="invitelist">
-        <AddedMember email={"molly@books.com"} accepted={false}/>
-        <AddedMember email={"timmy@books.com"} accepted={true} />
-        <AddedMember email={"tommy@books.com"} accepted={false} />
-        <AddedMember email={"terry@books.com"} accepted={true} />
-        <AddedMember email={"anna@books.com"} accepted={true} />
-      </div> */}
       <div className="invitelist">
         {invites.map((invite, index) => (
           <AddedMember
@@ -82,7 +74,7 @@ function InvitePage() {
           />
         ))}
       </div>
-      <button className="donebutton">Done</button>
+      <button className="donebutton" onClick={() => navigate('/home')}>Done</button>
     </div>
   );
 }

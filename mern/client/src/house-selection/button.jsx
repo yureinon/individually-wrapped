@@ -13,8 +13,6 @@ function Button(props) {
   };
   const createMyHouse = async () => {
     const token = localStorage.getItem('token');
-    console.log(htx.houseType);
-    console.log(htx.houseName);
     await fetch(`http://localhost:5050/api/v0/house`, {
       method: 'POST',
       body: JSON.stringify({type: htx.houseType, name: htx.houseName}),
@@ -27,7 +25,7 @@ function Button(props) {
           if (!response.ok) {
             throw response;
           }
-          navigate('/home')
+          navigate('/invites')
         })
         .catch((error) => {
           throw(error);

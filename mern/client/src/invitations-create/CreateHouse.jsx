@@ -17,7 +17,7 @@ function CreateHouse() {
   };
   
   return (
-    <div className="invitations-create">
+    <div className="invitations-create">    
       <button className = "create-button" onClick={() => setPopupVisible(true)}>
         Create
       </button>

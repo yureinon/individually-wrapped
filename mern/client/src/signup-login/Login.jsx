@@ -15,6 +15,28 @@ function Login() {
       [name]: value
     }));
   };
+  const getMyHouse = async () => {
+    const token = localStorage.getItem('token');
+    await fetch(`http://localhost:5050/api/v0/house`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`,
+      },
+    })
+        .then((response) => {
+          if (!response.ok) {
+            throw response;
+          }
+          navigate('/home');
+        })
+        .catch((error) => {
+          if (error.status === 404) {
+            navigate('/invitationscreate');
+          }
+          throw(error);
+        });
+  };
   const login = async () => {
     localStorage.removeItem('token');
     await fetch(`http://localhost:5050/api/v0/login`, {
@@ -34,8 +56,7 @@ function Login() {
         localStorage.setItem('token', json.accessToken);
         utx.setUserName(json.name);
         utx.setUserEmail(json.email);
-        
-        navigate("/home");
+        getMyHouse();
       })
       .catch((err) => {
         alert("Error logging in");

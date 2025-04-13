@@ -13,17 +13,14 @@ function Home() {
   const navigate = useNavigate();
   const [status, setStatus] = React.useState("free");
   const ctx = React.useContext(UserContext);
-  console.log(ctx.currentUserEmail);
-  console.log(ctx.currentUserName);
-  const curusername = ctx.currentUserName;
   const [myChores, setMyChores] = React.useState([]);
   const [roommates, setRoommates] = React.useState([]);
   const [homeName, setHomeName] = React.useState("");
-  const [curRoommateName, setCurRoommateName] = React.useState("");
-  const [curRoommateStatus, setCurRoommateStatus] = React.useState("");
-  const token = localStorage.getItem('token');
+  const [roommateData, setRoommateData] = React.useState([]);
 
   const toggleChoreCompletion = async(choreName) => {
+    const token = localStorage.getItem('token');
+
     await fetch(`http://localhost:3010/api/v0/chore`, {
       method: 'PUT',
       body: JSON.stringify({name:choreName}),
@@ -44,6 +41,8 @@ function Home() {
   };
 
   const getMyChores = () => {
+    const token = localStorage.getItem('token');
+
     fetch(`http://localhost:5050/api/v0/chore`, {
       method: 'GET',
       headers: {
@@ -66,6 +65,8 @@ function Home() {
   };
 
   const getMyHouse = async () => {
+    const token = localStorage.getItem('token');
+
     await fetch(`http://localhost:5050/api/v0/house`, {
       method: 'GET',
       headers: {
@@ -80,8 +81,9 @@ function Home() {
           return response.json();
         })
         .then((json) => {
-          setRoommates(json.memberList);
-          setHomeName (json.name);
+          setRoommates(json.members);
+          // setRoommates(json.memberList);
+          setHomeName(json.name);
         })
         .catch((error) => {
           if (error.status === 404) {
@@ -91,8 +93,11 @@ function Home() {
         });
   };
 
-  const getUser = () => {
-    fetch(`http://localhost:3010/api/v0/user`, {
+  const getUser = async (email) => {
+    console.log(email);
+    const token = localStorage.getItem('token');
+
+    return await fetch(`http://localhost:5050/api/v0/user?email=${email}`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
@@ -106,21 +111,36 @@ function Home() {
           return response.json();
         })
         .then((json) => {
-          setCurRoommateName(json.name);
-          setCurRoommateStatus(json.status);
+          return {name: json.name, status: json.status};
         })
         .catch((error) => {
           throw(error);
         });
   };
 
-  
+  const fetchRoommates = async () => {
+      const filteredEmails = roommates.filter(email => email !== ctx.currentUserEmail);
+      const newRoommateData = [];
+      for (const email of filteredEmails) {
+        try {
+          const data = await getUser(email); // fetch one at a time
+          newRoommateData.push(data);
+        } catch (err) {
+          console.error(`Failed to fetch data for ${email}:`, err);
+        }
+      }
+      setRoommateData(newRoommateData);
+  };
 
   // get all my chores upon render
   React.useEffect(() => {
     getMyChores();
     getMyHouse();
   }, []);
+
+  React.useEffect(() => {
+    fetchRoommates();
+  }, [roommates]);
 
 
   return (
@@ -135,24 +155,23 @@ function Home() {
         <span className="popuproom"><h1 className = "roommates-title">Roommates</h1><StatusPopup /></span>
         <div className = "roommates-card">
             <div className = "roommates-list">
-                <Roommate roommate_name={curusername} status={status} />
+                <Roommate roommate_name={ctx.currentUserName} status={status} />
 
-                <Roommate roommate_name={"Landlord"} status={"free"}></Roommate>
+                {/* <Roommate roommate_name={"Landlord"} status={"free"}></Roommate>
                 <Roommate roommate_name={"Hayley"} status={"dnd"}></Roommate>
                 <Roommate roommate_name={"Kaylee"} status={"away"}></Roommate>
                 <Roommate roommate_name={"Michelle"} status={"asleep"}></Roommate>
-                <Roommate roommate_name={"Fiona"} status={"free"}></Roommate>
+                <Roommate roommate_name={"Fiona"} status={"free"}></Roommate> */}
 
 
                 {/* create function to call getUser() to update state values? */}
-                {/* {roommates.map((roommate, index) => (
-                  roommate.email !== ctx.currentUserEmail
+                {roommateData.map((roommate, index) => roommate ? (
                   <Roommate
                     key={index}
                     roommate_name={roommate.name}
                     status={roommate.status}
                   />
-                ))} */}
+                ) : null)}
             </div>
         </div>
       </div>

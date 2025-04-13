@@ -14,13 +14,9 @@ function Signup() {
       [name]: value
     }));
   };
-  // const handleInputChange = (event) => {
-  //   const {value, name} = event.target;
-  //   const u = credentials;
-  //   u[name] = value;
-  //   setCredentials(u);
-  // };
+
   const signup = async (event) => {
+    localStorage.removeItem('token');
     console.log(credentials);
     await fetch(`http://localhost:5050/api/v0/user`, {
       method: "POST",
@@ -33,7 +29,7 @@ function Signup() {
         if (!res.ok) {
           throw res;
         }
-        navigate("/home");
+        navigate("/login");
       })
       .catch((err) => {
         console.log(err);
@@ -42,19 +38,19 @@ function Signup() {
 
   return (
     <>
-        <div className = "signup">
-            <button className="btn" onClick={() => navigate("/")}><i className="fa fa-arrow-left"></i></button>
-            <img src={nerdImg} />
-            <div className = "signin-card">
-                <h1 className = "title">Sign Up</h1>
-                <input className = "email" name="email" placeholder = "Email" type="text" onChange={handleInputChange}></input>
-                <input className = "name" name="name" placeholder = "Name" type="text" onChange={handleInputChange}></input>
-                <input className = "password" name="password" placeholder = "Password" type="text" onChange={handleInputChange}></input>
-                <button className = "signup-button" onClick={signup}>
-                    SIGN UP
-                </button>
-            </div>
-        </div>
+      <div className = "signup">
+          <button className="btn" onClick={() => navigate("/")}><i className="fa fa-arrow-left"></i></button>
+          <img src={nerdImg} />
+          <div className = "signin-card">
+              <h1 className = "title">Sign Up</h1>
+              <input className = "email" name="email" placeholder = "Email" type="text" onChange={handleInputChange}></input>
+              <input className = "name" name="name" placeholder = "Name" type="text" onChange={handleInputChange}></input>
+              <input className = "password" name="password" placeholder = "Password" type="text" onChange={handleInputChange}></input>
+              <button className = "signup-button" onClick={signup}>
+                  SIGN UP
+              </button>
+          </div>
+      </div>
     </>
   )
 }
