@@ -103,7 +103,6 @@ function Home() {
   };
 
   const getUser = async (email) => {
-    console.log(email);
     const token = localStorage.getItem('token');
 
     return await fetch(`http://localhost:5050/api/v0/user?email=${email}`, {
