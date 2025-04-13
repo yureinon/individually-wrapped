@@ -10,6 +10,7 @@ function StatusPopup() {
   };
   const selectOption = (option) => {
     ctx.setStatus(option);
+    changeStatus();
     setShowPopup(false);
   };
   React.useEffect(() => {
@@ -23,6 +24,25 @@ function StatusPopup() {
       document.removeEventListener("mousedown", handleClickOutside);
     };
   }, []);
+
+  const changeStatus = async () => {
+    const token = localStorage.getItem('token');
+    await fetch(`http://localhost:5050/api/v0/user/${ctx.status}`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`,
+      },
+    })
+    .then((res) => {
+      if (!res.ok) {
+        throw(res);
+      }
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+  };
   return (
     <div style={{ position: "relative", display: "inline-block" }}>
       <button className="pbutton" onClick={togglePopup}>Set Status</button>
