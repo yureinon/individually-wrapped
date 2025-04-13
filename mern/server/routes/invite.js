@@ -23,6 +23,8 @@ const router = express.Router();
  *         description: Invite created
  *       404:
  *         description: User house not found
+ *       409:
+ *         description: Invite already exists
  *       default:
  *         description: Unexpected Error
  */
@@ -35,6 +37,40 @@ router.post("/:email", auth.check, async (req, res) => {
     if (error.message == "Invite already exists") {
       res.status(409).send();
     } else {
+      res.status(404).send();
+    }
+  }
+});
+
+/**
+ * @swagger
+ * /api/v0/invite/{id}:
+ *   put:
+ *     security:
+ *       - bearerAuth: []
+ *     description: Accept the invite
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         schema:
+ *           type: string
+ *         required: true
+ *         description: Invite id
+ *     responses:
+ *       200:
+ *         description: Invite accepted
+ *       default:
+ *         description: Unexpected Error
+ */
+router.put("/:id", auth.check, async (req, res) => {
+  try {
+    const { id } = req.user;
+    await invite.put(id, req.params.id);
+    res.status(200).send();
+  } catch (error) {
+    if (error.message == "Invite does not exist") {
+      res.status(404).send();
+    } else{
       res.status(404).send();
     }
   }
