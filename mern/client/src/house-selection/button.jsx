@@ -28,6 +28,9 @@ function Button(props) {
           navigate('/invites')
         })
         .catch((error) => {
+          if (err.status === 403) {
+            navigate('/login');
+          }
           throw(error);
         });
   };

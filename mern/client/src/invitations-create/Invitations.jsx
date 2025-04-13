@@ -18,6 +18,9 @@ function Invitation(props) {
       })
       .catch((err) => {
         alert("Error accepting invite");
+        if (err.status === 403) {
+          navigate('/login');
+        }
         console.log(err);
       });
   };

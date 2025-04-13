@@ -55,10 +55,10 @@ function SchedulePage() {
   const [fetchedevents, setFetchedEvents] = React.useState([]);
   React.useEffect(() => {
     getEvents();
-  }, [fetchedevents]);
+  }, [fetchedevents, current]);
   const getEvents = async () => {
     const token = localStorage.getItem('token');
-    await fetch(`http://localhost:5050/api/v0/event`, {
+    await fetch(`http://localhost:5050/api/v0/event/${current}`, {
       method: "GET",
       headers: {
         'Content-Type': 'application/json',
@@ -75,6 +75,9 @@ function SchedulePage() {
         setFetchedEvents(json);
       })
       .catch((err) => {
+        if (err.status === 403) {
+          navigate('/login');
+        }
         console.log(err);
       });
   };
@@ -106,7 +109,7 @@ function SchedulePage() {
             ))}
           </div>
           <div className="timeline" style={{ height: `${(END_HOUR - START_HOUR + 1) * HOUR_HEIGHT}px` }}>
-            {events.map((event, index) => {
+            {fetchedevents.map((event, index) => {
               const start = new Date(event.start);
               const end = new Date(event.end);
               const startHour = start.getHours() + start.getMinutes() / 60;
@@ -138,7 +141,7 @@ function SchedulePage() {
                     left: `${left}px`,
                     zIndex: isActive ? 10 : 1}}
                 >
-                    <EventBlock name={event.title} start={event.start} end={event.end} />
+                    <EventBlock name={event.name} start={event.start} end={event.end} />
                 </div>
             ) : null;
             })}

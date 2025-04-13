@@ -1,7 +1,9 @@
 import React from 'react'
 import EventContext from './EventContext';
+import {useNavigate} from 'react-router-dom';
 
 function CreateEvent() {
+  const navigate = useNavigate();
   const ectx = React.useContext(EventContext);
   const [popupVisible, setPopupVisible] = React.useState(false);
   const [inputValue, setInputValue] = React.useState("");
@@ -12,6 +14,7 @@ function CreateEvent() {
   const handleSubmit = (e) => {
     e.preventDefault();
     generateEventTimes(day, starttime, endtime);
+    console.log(event);
     sendEvent();
     setInputValue("");
     setStarttime("");
@@ -34,15 +37,18 @@ function CreateEvent() {
         if (!res.ok) {
           throw res;
         }
-        ectx.setFetchedEvents((prev) => [...prev, event]);
+        // ectx.setFetchedEvents((prev) => [...prev, event]);
       })
       .catch((err) => {
+        if (err.status === 403) {
+          navigate('/login');
+        }
         console.log(err);
       })
   };
   const generateEventTimes = (dd, st, et) => {
-    const actualstart = parseDate(dd, st);
-    const actualend = parseDate(dd, et);
+    const actualstart = parseDate(dd, st).toISOString();
+    const actualend = parseDate(dd, et).toISOString();
     setEvent({name: inputValue, start: actualstart, end: actualend});
   }
   function parseDate(dateStr, timeStr) {

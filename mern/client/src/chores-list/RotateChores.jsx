@@ -6,7 +6,6 @@ function RotateChores() {
   const [popupVisible, setPopupVisible] = React.useState(false);
   const [selectedEvent, setSelectedEvent] = React.useState("");
   const [selectedChore, setSelectedChore] = React.useState("");
-
   const [roommateEmails, setRoommateEmails] = React.useState([]);
   const [roommateNames, setRoommateNames] = React.useState([]);
 //   const [choreOptions, setChoreOptions] = React.useState([]);
@@ -71,7 +70,28 @@ function RotateChores() {
     fetchRoommatesAndNames();
   }, [roommateEmails.length]); // Re-run only if the number of emails changes
   
-
+  const changeRotation = async () => {
+    const token = localStorage.getItem('token');
+    await fetch(`http://localhost:5050/api/v0/chore`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`
+      },
+    })
+    .then((res) => {
+      if (!res.ok) {
+        throw(res);
+      }
+    })
+    .catch((err) => {
+      console.log(err);
+    })
+  }
+  const curday = new Date().getDay();
+  if (curday == 0) {
+    changeRotation();
+  }
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -96,7 +116,6 @@ function RotateChores() {
 
       if (!res.ok) throw res;
 
-      ectx.setFetchedEvents(prev => [...prev, event]);
       setPopupVisible(false);
       setSelectedEvent("");
       setSelectedChore("");
@@ -123,7 +142,7 @@ function RotateChores() {
                 onChange={(e) => setSelectedEvent(e.target.value)}
                 required
               >
-                <option value="">Select Event</option>
+                <option value="">Select Roommate</option>
                 {roommateNames.map(event => (
                   <option key={event} value={event}>{event}</option>
                 ))}

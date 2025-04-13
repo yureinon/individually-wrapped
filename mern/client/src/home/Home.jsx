@@ -36,6 +36,9 @@ function Home() {
           return response.json();
         })
         .catch((error) => {
+          if (err.status === 403) {
+            navigate('/login');
+          }
           throw(error);
         });
   };
@@ -60,6 +63,9 @@ function Home() {
           setMyChores(json);
         })
         .catch((error) => {
+          if (error.status === 403) {
+            navigate('/login');
+          }
           throw(error);
         });
   };
@@ -89,6 +95,9 @@ function Home() {
           if (error.status === 404) {
             navigate('/invitationscreate')
           }
+          if (error.status === 403) {
+            navigate('/login');
+          }
           throw(error);
         });
   };
@@ -114,6 +123,9 @@ function Home() {
           return {name: json.name, status: json.status};
         })
         .catch((error) => {
+          if (err.status === 403) {
+            navigate('/login');
+          }
           throw(error);
         });
   };
